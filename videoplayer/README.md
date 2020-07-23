@@ -20,7 +20,7 @@ For example:
 
 Generate an APIKey with Assets Read scope.
 
-With both our APIKey and the ID to the file we're basing our WEBVTT on we're now ready to generate it.
+With both our APIKey and the ID to the file we're now ready to generate our WEBVTT.
 
 In terminal, navigate to the /videoplayer folder. Replace the command with your ID and APIKey path and execute it.
 
