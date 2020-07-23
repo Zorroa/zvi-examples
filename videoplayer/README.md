@@ -30,7 +30,7 @@ $ python main.py -f <REPLACE WITH FILE ID> -s https://api.zvi.zorroa.com -k <REP
 
 This will generate the file gcp-video-text-detection.webvtt or will be called MODULE-NAME.webvtt if using another module.
 
-Now that we have our WEBVTT file, we can now add it as a track for our video element.
+Now that we have our WEBVTT file, we can now add it as a track to our HTML5 video element.
 
 ```html
 <video
@@ -50,9 +50,9 @@ Now that we have our WEBVTT file, we can now add it as a track for our video ele
 </video>
 ```
 
-The `index.html` file includes a video player with the `gcp-video-text-detection.webvtt` track. During video playback, it will trigger our javascript `textDetection.oncuechange` function each time it passes a start point in our `gcp-video-text-detection.webvtt` file. From here we can use data from the file however we choose.
+The `index.html` file includes a video player with the `gcp-video-text-detection.webvtt` track. During video playback, it will trigger our javascript `textDetection.oncuechange` function each time it passes a start point in our `gcp-video-text-detection.webvtt` file. From here we can use the metadata however we choose.
 
-In the `index.html` file, information is displayed in the Text Detection panel and each text generate from ZVI's analysis is made clickable and will navigate you to that portion of the video.
+In our `index.html` example file, information from ZVI's analysis is displayed in the Text Detection panel. Click on any of those terms to navigate directly to where it appeared in our video.
 
 You can try it out by navigating to the videoplayer folder and excuting this command in terminal and then open a browser to http://localhost:8000
 
