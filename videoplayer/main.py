@@ -45,6 +45,7 @@ def _sort_start_clip(clip):
     return float(clip["start"])
 
 def _generate_webvtt(name, clips):
+    print(name)
     f = open("{}.webvtt".format(name), "a")
     f.write("WEBVTT - {}\n\n".format(name))
     count = 0
@@ -66,6 +67,7 @@ def _generate_webvtt(name, clips):
 with gzip.open(b, "rb") as f:
     data = json.loads(f.read())
     name = data["name"]
+    
     # loop through list of tracks
     for track in data["tracks"]:
         # iterate through each clip in a track

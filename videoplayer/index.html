@@ -19,16 +19,21 @@
       crossorigin="anonymous"
     />
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <style>
     body,
     html {
       height: 100%;
     }
+    ol li {
+      list-style-type: none;
+    }
     body {
       color: #ffffff;
       font-size: 12px;
       font-family: Arial, Helvetica, sans-serif;
+      background-color: #252121;
     }
     #label {
       font-family: Arial, Helvetica, sans-serif;
@@ -45,7 +50,9 @@
     }
     section {
       padding-bottom: 20px;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.8);
+      max-height: 300px;
+      overflow-y: hidden;
     }
     h6 {
       padding-left: 10px;
@@ -74,6 +81,13 @@
       border: 0;
       /* border-top: 1px solid #999999; */
     }
+    a {
+      color: #73b61a;
+      cursor: pointer;
+    }
+    a:hover {
+      background-color: lightgreen;
+    }
   </style>
   <body id="background">
     <div class="container-fluid">
@@ -87,8 +101,8 @@
           >
             <track
               id="textDetection"
-              label="English"
-              kind="subtitles"
+              label="gcp-video-text-detection"
+              kind="metadata"
               srclang="en"
               src="gcp-video-text-detection.webvtt"
               default
@@ -118,7 +132,9 @@
               and extracts text within an image with support for a broad range
               of languages. It also features automatic language identification.
             </h6>
-            <div id="googleTextDetection" class="data"></div>
+            <div id="googleTextDetection" class="data">
+              <ol></ol>
+            </div>
           </section>
         </div>
         <div class="col">
@@ -172,6 +188,28 @@
       </div>
     </div>
     <script>
+      String.prototype.toHHMMSS = function () {
+        var sec_num = parseInt(this, 10); // don't forget the second param
+        var hours = Math.floor(sec_num / 3600);
+        var minutes = Math.floor((sec_num - hours * 3600) / 60);
+        var seconds = sec_num - hours * 3600 - minutes * 60;
+
+        if (hours < 10) {
+          hours = "0" + hours;
+        }
+        if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+        return hours + ":" + minutes + ":" + seconds;
+      };
+      var skipToTime = function (time) {
+        var video = document.getElementById("video");
+        video.currentTime = time;
+        video.play();
+      };
       var video = document.getElementById("video");
       if (Hls.isSupported()) {
         var hls = new Hls();
@@ -195,10 +233,27 @@
 
       var textDetection = document.getElementById("textDetection");
 
+      var elemGoogleTextDetection = document.getElementById(
+        "googleTextDetection"
+      );
+
       textDetection.oncuechange = function (data) {
-        var cue = data.target.track.activeCues[0];
-        if (cue !== undefined) {
-          console.log(cue.text);
+        if (data.target.track.activeCues.length > 0) {
+          console.log(data.target.track);
+          var cue = data.target.track.activeCues[0];
+          var start = data.target.track.activeCues[0].startTime;
+          fstart = String(start).toHHMMSS();
+          if (cue !== undefined) {
+            $("#googleTextDetection ol").prepend(
+              "<li><a style='color: #73b61a' onclick='skipToTime(" +
+                start +
+                ")'>" +
+                fstart +
+                " " +
+                cue.text +
+                "</a></li>"
+            );
+          }
         }
       };
     </script>
