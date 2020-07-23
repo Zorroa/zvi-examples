@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Video Streaming with AI/ML - contextual metadata</title>
+    <meta
+      name="description"
+      content="Use AI/ML to stream video with contextual metadata for each scene.  Discover objects, sentiment, face detection, logos, web entities, content categories, explicit content, and extract text from scenes with OCR.  Then compose it all into a WEBVTT file with rich metadata."
+    />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  </head>
+  <style>
+    body,
+    html {
+      height: 100%;
+    }
+    body {
+      color: #ffffff;
+      font-size: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #label {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20pt;
+    }
+    #label-md {
+      /* font-family: Arial, Helvetica, sans-serif;
+      font-size: 16pt;
+      font-weight: bold; */
+    }
+    .data {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    section {
+      padding-bottom: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    h6 {
+      padding-left: 10px;
+      font-size: 8pt;
+      font-style: italic;
+      font-weight: lighter;
+      color: #757575;
+      /* border-bottom: 1px solid #333333; */
+    }
+    h1 {
+      padding-top: 30px;
+    }
+    h3 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12pt;
+      color: #5d5d5d;
+      font-weight: bold;
+      background: black;
+      padding-left: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    hr {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      border: 0;
+      /* border-top: 1px solid #999999; */
+    }
+  </style>
+  <body id="background">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <video
+            id="video"
+            controls
+            preload="metadata"
+            style="width: 100%; margin-top: 30px;"
+          >
+            <track
+              id="textDetection"
+              label="English"
+              kind="subtitles"
+              srclang="en"
+              src="gcp-video-text-detection.webvtt"
+              default
+            />
+          </video>
+          <div id="proxies"></div>
+          <hr />
+          <section id="cc">
+            <h3 id="label-md">
+              SPEECH TO TEXT
+            </h3>
+            <h6>Speech to text recognition</h6>
+            <div id="cc-confidence" class="data"></div>
+            <div id="captions" style="font-size: 18pt;" class="data"></div>
+          </section>
+          <hr />
+          <section>
+            <h3 id="label-md">LANGUAGE ENTITIES</h3>
+            <h6></h6>
+            <div id="googleLanguageEntities" class="data"></div>
+          </section>
+          <hr />
+          <section>
+            <h3 id="label-md">TEXT DETECTION</h3>
+            <h6>
+              Text Detection performs Optical Character Recognition. It detects
+              and extracts text within an image with support for a broad range
+              of languages. It also features automatic language identification.
+            </h6>
+            <div id="googleTextDetection" class="data"></div>
+          </section>
+        </div>
+        <div class="col">
+          <h1>VIDEO CONTEXT</h1>
+          <hr />
+          <section>
+            <h3 id="label-md">VISION LABEL DETECTION</h3>
+            <h6>
+              Detects broad sets of categories within an image, which range from
+              modes of transportation to animals.
+            </h6>
+            <div id="googleVisionLabelDetection" class="data"></div>
+          </section>
+          <hr />
+          <section>
+            <h3 id="label-md">WEB ENTITY DETECTION</h3>
+            <h6>
+              Web Detection detects Web references to an image.
+            </h6>
+            <div id="googleWebEntityDetection" class="data"></div>
+          </section>
+          <hr />
+          <section>
+            <h3 id="label-md">LOGO DETECTION</h3>
+            <h6>
+              Logo Detection detects popular product logos within an image.
+            </h6>
+            <div id="googleLogoDetection" class="data"></div>
+          </section>
+          <hr />
+          <section>
+            <h3 id="label-md">FACE DETECTION</h3>
+            <h6>
+              Detects multiple faces within an image along with the associated
+              key facial attributes such as emotional state or wearing headwear.
+            </h6>
+            <div id="googleFaceDetection" class="data"></div>
+          </section>
+          <hr />
+          <section>
+            <h3 id="label-md">EXPLICIT CONTENT</h3>
+            <h6>
+              Safe Search Detection detects explicit content such as adult
+              content or violent content within an image. This feature uses five
+              categories ("adult", "spoof", "medical", "violence", and "racy")
+              and returns the likelihood that each is present in a given image
+            </h6>
+            <div id="explicit" class="data"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script>
+      var video = document.getElementById("video");
+      if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(
+          "https://nezzoh-video.s3-us-west-1.amazonaws.com/transcodes/tearsofsteel/1080p.m3u8"
+        );
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          // video.play();
+        });
+      }
+
+      var formatObject = function (obj) {
+        var res = "";
+        for (var key in obj) {
+          res += key + " : " + obj[key] + "\n";
+        }
+        return res;
+      };
+      var video = document.getElementById("video");
+
+      var textDetection = document.getElementById("textDetection");
+
+      textDetection.oncuechange = function (data) {
+        var cue = data.target.track.activeCues[0];
+        if (cue !== undefined) {
+          console.log(cue.text);
+        }
+      };
+    </script>
+  </body>
+</html>
