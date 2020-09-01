@@ -55,6 +55,11 @@ def by_aggregation(payload):
     search = app.assets.search(search=payload)
     pprint(search.aggregation("all_labels"))
 
+def by_file_type_term(payload):
+    search = app.assets.search(search=payload)
+    for asset in search:
+        print(asset.id)
+
 # get all assets
 get_all()
 
@@ -79,3 +84,18 @@ by_es_term(search)
 # ES reference: https://www.elastic.co/guide/en/elasticsearch/guide/master/aggregations.html
 search = {"aggs" : {"all_labels": {"terms": {"field": "analysis.gcp-vision-label-detection.predictions.label"}}}}
 by_aggregation(search)
+
+# by file type and term
+# ES reference: https://www.elastic.co/guide/en/elasticsearch/guide/master/_analytics.html
+# ES reference: https://www.elastic.co/guide/en/elasticsearch/guide/master/aggregations.html
+search = {
+    "query": {
+        "bool": {
+            "must": [
+                {"match": {"media.type": "video"}},
+                {"simple_query_string": {"query": "sky"}}
+                ]
+        }
+    }
+}
+by_file_type_term(search)

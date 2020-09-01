@@ -1,0 +1,315 @@
+{
+  "name": "gcp-video-object-detection",
+  "metadata": {},
+  "tracks": [
+    {
+      "name": "clothing",
+      "metadata": {},
+      "clips": [
+        {
+          "start": "13.625",
+          "stop": "13.625",
+          "metadata": {
+            "content": "clothing",
+            "confidence": 0.5122203230857849
+          }
+        }
+      ]
+    },
+    {
+      "name": "drink",
+      "metadata": {},
+      "clips": [
+        {
+          "start": "10.875",
+          "stop": "12.375",
+          "metadata": { "content": "drink", "confidence": 0.6479249596595764 }
+        },
+        {
+          "start": "13.500",
+          "stop": "14.125",
+          "metadata": { "content": "drink", "confidence": 0.631975531578064 }
+        },
+        {
+          "start": "2.375",
+          "stop": "3.500",
+          "metadata": { "content": "drink", "confidence": 0.5930494070053101 }
+        },
+        {
+          "start": "8.625",
+          "stop": "8.625",
+          "metadata": { "content": "drink", "confidence": 0.6623954772949219 }
+        }
+      ]
+    },
+    {
+      "name": "food",
+      "metadata": {},
+      "clips": [
+        {
+          "start": "0.000",
+          "stop": "2.500",
+          "metadata": { "content": "food", "confidence": 0.688629686832428 }
+        },
+        {
+          "start": "0.875",
+          "stop": "2.625",
+          "metadata": { "content": "food", "confidence": 0.6041026711463928 }
+        },
+        {
+          "start": "1.500",
+          "stop": "1.625",
+          "metadata": { "content": "food", "confidence": 0.5229620933532715 }
+        },
+        {
+          "start": "10.625",
+          "stop": "11.250",
+          "metadata": { "content": "food", "confidence": 0.534584105014801 }
+        },
+        {
+          "start": "11.250",
+          "stop": "11.250",
+          "metadata": { "content": "food", "confidence": 0.5017922520637512 }
+        },
+        {
+          "start": "13.750",
+          "stop": "13.750",
+          "metadata": { "content": "food", "confidence": 0.5047982931137085 }
+        },
+        {
+          "start": "14.125",
+          "stop": "14.375",
+          "metadata": { "content": "food", "confidence": 0.5197479724884033 }
+        },
+        {
+          "start": "14.625",
+          "stop": "14.875",
+          "metadata": { "content": "food", "confidence": 0.5711570382118225 }
+        },
+        {
+          "start": "15.125",
+          "stop": "15.250",
+          "metadata": { "content": "food", "confidence": 0.5245583057403564 }
+        },
+        {
+          "start": "15.250",
+          "stop": "15.750",
+          "metadata": { "content": "food", "confidence": 0.6744189858436584 }
+        },
+        {
+          "start": "2.250",
+          "stop": "2.250",
+          "metadata": { "content": "food", "confidence": 0.5105050206184387 }
+        },
+        {
+          "start": "3.750",
+          "stop": "4.375",
+          "metadata": { "content": "food", "confidence": 0.5234776735305786 }
+        },
+        {
+          "start": "5.250",
+          "stop": "5.500",
+          "metadata": { "content": "food", "confidence": 0.5363633632659912 }
+        }
+      ]
+    },
+    {
+      "name": "luggage & bags",
+      "metadata": {},
+      "clips": [
+        {
+          "start": "15.000",
+          "stop": "15.000",
+          "metadata": {
+            "content": "luggage & bags",
+            "confidence": 0.6110823154449463
+          }
+        },
+        {
+          "start": "7.250",
+          "stop": "7.500",
+          "metadata": {
+            "content": "luggage & bags",
+            "confidence": 0.611028790473938
+          }
+        }
+      ]
+    },
+    {
+      "name": "packaged goods",
+      "metadata": {},
+      "clips": [
+        {
+          "start": "0.000",
+          "stop": "2.500",
+          "metadata": {
+            "content": "packaged goods",
+            "confidence": 0.699635922908783
+          }
+        },
+        {
+          "start": "0.500",
+          "stop": "1.625",
+          "metadata": {
+            "content": "packaged goods",
+            "confidence": 0.5422296524047852
+          }
+        },
+        {
+          "start": "11.375",
+          "stop": "11.375",
+          "metadata": {
+            "content": "packaged goods",
+            "confidence": 0.6025395393371582
+          }
+        },
+        {
+          "start": "13.000",
+          "stop": "13.125",
+          "metadata": {
+            "content": "packaged goods",
+            "confidence": 0.5623294115066528
+          }
+        },
+        {
+          "start": "5.000",
+          "stop": "5.000",
+          "metadata": {
+            "content": "packaged goods",
+            "confidence": 0.531619131565094
+          }
+        },
+        {
+          "start": "5.625",
+          "stop": "11.875",
+          "metadata": {
+            "content": "packaged goods",
+            "confidence": 0.5920029282569885
+          }
+        }
+      ]
+    },
+    {
+      "name": "person",
+      "metadata": {},
+      "clips": [
+        {
+          "start": "0.000",
+          "stop": "9.625",
+          "metadata": { "content": "person", "confidence": 0.9048379063606262 }
+        },
+        {
+          "start": "10.875",
+          "stop": "13.375",
+          "metadata": { "content": "person", "confidence": 0.8457227349281311 }
+        },
+        {
+          "start": "11.625",
+          "stop": "11.875",
+          "metadata": { "content": "person", "confidence": 0.8191130757331848 }
+        },
+        {
+          "start": "13.125",
+          "stop": "15.625",
+          "metadata": { "content": "person", "confidence": 0.8283877372741699 }
+        },
+        {
+          "start": "15.375",
+          "stop": "15.625",
+          "metadata": { "content": "person", "confidence": 0.8846718668937683 }
+        },
+        {
+          "start": "7.625",
+          "stop": "9.250",
+          "metadata": { "content": "person", "confidence": 0.8469949960708618 }
+        }
+      ]
+    },
+    {
+      "name": "tableware",
+      "metadata": {},
+      "clips": [
+        {
+          "start": "0.375",
+          "stop": "4.375",
+          "metadata": {
+            "content": "tableware",
+            "confidence": 0.6256953477859497
+          }
+        },
+        {
+          "start": "1.250",
+          "stop": "15.250",
+          "metadata": {
+            "content": "tableware",
+            "confidence": 0.7512105107307434
+          }
+        },
+        {
+          "start": "1.875",
+          "stop": "12.875",
+          "metadata": {
+            "content": "tableware",
+            "confidence": 0.6614283919334412
+          }
+        },
+        {
+          "start": "11.125",
+          "stop": "11.125",
+          "metadata": {
+            "content": "tableware",
+            "confidence": 0.5261738896369934
+          }
+        },
+        {
+          "start": "11.625",
+          "stop": "11.625",
+          "metadata": {
+            "content": "tableware",
+            "confidence": 0.5275890827178955
+          }
+        },
+        {
+          "start": "12.375",
+          "stop": "14.750",
+          "metadata": {
+            "content": "tableware",
+            "confidence": 0.6853389739990234
+          }
+        },
+        {
+          "start": "13.875",
+          "stop": "15.375",
+          "metadata": {
+            "content": "tableware",
+            "confidence": 0.7247017621994019
+          }
+        },
+        {
+          "start": "2.875",
+          "stop": "3.250",
+          "metadata": {
+            "content": "tableware",
+            "confidence": 0.5522001385688782
+          }
+        }
+      ]
+    },
+    {
+      "name": "watch",
+      "metadata": {},
+      "clips": [
+        {
+          "start": "11.000",
+          "stop": "15.000",
+          "metadata": { "content": "watch", "confidence": 0.6793040633201599 }
+        },
+        {
+          "start": "3.375",
+          "stop": "8.000",
+          "metadata": { "content": "watch", "confidence": 0.7055243849754333 }
+        }
+      ]
+    }
+  ]
+}

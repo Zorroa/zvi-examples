@@ -1,0 +1,5 @@
+{
+  "apiServer": "https://api.zvi.zorroa.com",
+  "apiKeyPath": "<FULL PATH TO APIKEY>",
+  "pyVirtualPath": "<OPTIONAL PATH TO PYTHON VIRTUAL ENVIRONMENT>"
+}
